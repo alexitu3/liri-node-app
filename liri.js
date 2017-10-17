@@ -3,7 +3,12 @@ var Twitter = require('twitter');
 var request = require('request');
 var Spotify = require('node-spotify-api');
 //console.log(apiKeys); 
-var input = process.argv[2]; 
+var input = process.argv[2];
+var query = process.argv
+query.splice(0,3)
+console.log(query)
+
+
 
 
 
@@ -37,14 +42,15 @@ var getTweets = function(){
 
 
 // spotify -----------------------------------
-
-var getSpotify = function() { 
+// concat the song name or if no song name if statement to send hard coded search.
+var getSpotify = function(song) { 
+  if (song)
   var spotify = new Spotify({
     id: apiKeys.spotifyKeys.client_ID,
     secret: apiKeys.spotifyKeys.client_secret
   });
  
-  spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+  spotify.search({ type: 'track', query: song }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
@@ -62,9 +68,10 @@ var getSpotify = function() {
 
 
 
-// //omdb-------------------------------------------------
-var request = require('request');
+// //omdb------------------------------------------------
 
+// concat the movie name or if no movie name if statement to send hard coded search.
+function ombdCall(movie) {
 request('http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=40e9cece', function (error, response, body) {
   console.log('error:', error);
   console.log('statusCode:', response && response.statusCode); // 
@@ -81,25 +88,30 @@ request('http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=40e9
     console.log("Actors:  " + JSON.parse(body).Actors);
     console.log("--------------------------");
     console.log("--------------------------");
+  })
 
-});
+
+};
     
 // still working on my switch and case function
 // I also still need to add the hard code edge cases.
 
-var choice = function() {
+var choice = function(input, query) {
+
   switch (input) {
     case "my-tweets":
-          // getTweets();
+          getTweets();
     break;
         
     case "spotify-this-song":
-          getSpotify();
+          getSpotify(query);
     break;
 
     case "movie-this":
+          ombdCall(query);
+    break;
 
 
   }
 }
-choice();
+choice(input);
