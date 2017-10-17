@@ -7,58 +7,58 @@ var input = process.argv[2];
 
 
 
-// var client = new Twitter({
-//   consumer_key: apiKeys.twitterKeys.consumer_key,
-//   consumer_secret: apiKeys.twitterKeys.consumer_secret,
-//   access_token_key: apiKeys.twitterKeys.access_token_key,
-//   access_token_secret: apiKeys.twitterKeys.access_token_secret
-// });
+var client = new Twitter({
+  consumer_key: apiKeys.twitterKeys.consumer_key,
+  consumer_secret: apiKeys.twitterKeys.consumer_secret,
+  access_token_key: apiKeys.twitterKeys.access_token_key,
+  access_token_secret: apiKeys.twitterKeys.access_token_secret
+});
 
-// var getTweets = function(){
-//   var params = {screen_name: 'TheDailyShow'};
-//   client.get('statuses/user_timeline', params, function(error, tweets, response) {
-//     if(!error){
+var getTweets = function(){
+  var params = {screen_name: 'TheDailyShow'};
+  client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if(!error){
       
       
-//       for(var i = 0; i < 10; i++ ) {
+      for(var i = 0; i < 10; i++ ) {
         
-//         console.log("--------------------------");
-//         console.log("Tweet");
-//         console.log(tweets[i].text, tweets[i].create_at);
-//         console.log("--------------------------");
+        console.log("--------------------------");
+        console.log("Tweet");
+        console.log(tweets[i].text, tweets[i].create_at);
+        console.log("--------------------------");
 
-//       }
-//     }
-//     else{
-//       console.log(error);
-//     }
-//   });
-// }
+      }
+    }
+    else{
+      console.log(error);
+    }
+  });
+}
 
 
 // spotify -----------------------------------
 
-// var getSpotify = function() { 
-//   var spotify = new Spotify({
-//     id: apiKeys.spotifyKeys.client_ID,
-//     secret: apiKeys.spotifyKeys.client_secret
-//   });
+var getSpotify = function() { 
+  var spotify = new Spotify({
+    id: apiKeys.spotifyKeys.client_ID,
+    secret: apiKeys.spotifyKeys.client_secret
+  });
  
-//   spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-//   if (err) {
-//     return console.log('Error occurred: ' + err);
-//   }
-//         console.log("--------------------------");
-//         console.log("--------------------------");
-//         console.log("Artist: "+ data.tracks.items[0].artists[0].name)
-//         console.log("Song: " + data.tracks.items[0].name);
-//         console.log("Preview Link" + data.tracks.items[0].href);
-//         console.log("album: " + data.tracks.items[0].album.name);
-//         console.log("--------------------------");
-//         console.log("--------------------------");
+  spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  }
+        console.log("--------------------------");
+        console.log("--------------------------");
+        console.log("Artist: "+ data.tracks.items[0].artists[0].name)
+        console.log("Song: " + data.tracks.items[0].name);
+        console.log("Preview Link" + data.tracks.items[0].href);
+        console.log("album: " + data.tracks.items[0].album.name);
+        console.log("--------------------------");
+        console.log("--------------------------");
    
-//   });
-// }
+  });
+}
 
 
 
@@ -84,7 +84,8 @@ request('http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=40e9
 
 });
     
-
+// still working on my switch and case function
+// I also still need to add the hard code edge cases.
 
 var choice = function() {
   switch (input) {
